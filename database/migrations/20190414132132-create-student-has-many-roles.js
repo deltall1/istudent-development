@@ -1,7 +1,7 @@
-'use strict';
+"use strict";
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable('StudentHasManyRoles', {
+    return queryInterface.createTable("StudentHasManyRoles", {
       projectID: {
         allowNull: false,
         autoIncrement: false,
@@ -25,6 +25,6 @@ module.exports = {
     });
   },
   down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable('StudentHasManyRoles');
+    return queryInterface.dropTable("StudentHasManyRoles");
   }
 };

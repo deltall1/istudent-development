@@ -1,31 +1,31 @@
-'use strict';
+"use strict";
 
 module.exports = {
   up: (queryInterface, Sequelize) => {
-      return (
-        queryInterface.addConstraint('Recruiters', ['userID'], {
-          type: 'foreign key',
-          name: 'FK_Recruiters_userID',
-          references: {
-            table: 'Users',
-            field: 'id'
-          }
-        }),
-        queryInterface.addConstraint('Recruiters', ['companyID'], {
-          type: 'foreign key',
-          name: 'FK_Recruiters_companyID',
-          references: {
-            table: 'Companies',
-            field: 'id'
-          }
-        })
-      );
+    return (
+      queryInterface.addConstraint("Recruiters", ["userID"], {
+        type: "foreign key",
+        name: "FK_Recruiters_userID",
+        references: {
+          table: "Users",
+          field: "id"
+        }
+      }),
+      queryInterface.addConstraint("Recruiters", ["companyID"], {
+        type: "foreign key",
+        name: "FK_Recruiters_companyID",
+        references: {
+          table: "Companies",
+          field: "id"
+        }
+      })
+    );
   },
 
   down: (queryInterface, Sequelize) => {
-      return (
-        queryInterface.removeConstraint('Recruiters', 'FK_Recruiters_userID'),
-        queryInterface.removeConstraint('Recruiters', 'FK_Recruiters_companyID')
-      );
+    return (
+      queryInterface.removeConstraint("Recruiters", "FK_Recruiters_userID"),
+      queryInterface.removeConstraint("Recruiters", "FK_Recruiters_companyID")
+    );
   }
 };
