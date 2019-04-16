@@ -18,6 +18,12 @@ module.exports = {
       avatarUrl: {
         type: Sequelize.STRING
       },
+      accessToken: {
+        type: Sequelize.STRING
+      },
+      refreshToken: {
+        type: Sequelize.STRING
+      },
       phoneNumber: {
         type: Sequelize.STRING
       },
