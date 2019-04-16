@@ -1,10 +1,10 @@
+require('dotenv-defaults').config();
+
+const configs = require("./config/app");
 const express = require("express");
 const regRoutes = require("./routes/register-routes");
 const authRoutes = require("./routes/auth-routes");
 const bodyParser = require("body-parser");
-// Створюємо екземпляр БД
-// const db = require("./config/database");
-
 const app = express();
 
 app.use(bodyParser.json());
@@ -14,6 +14,6 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use("/reg", regRoutes);
 app.use("/auth", authRoutes);
 
-app.listen(5000, () => {
-  console.log("app now listening for request on port 5000");
+app.listen(configs.port, configs.host, () => {
+    console.log(`app now listening for request on ${configs.host}:${configs.port}.`);
 });

@@ -1,4 +1,4 @@
-const db = require('../config/database');
+const db = require('../core/database');
 const User = db.import('../database/models/user');
 
 const createUser = (req, res) => {

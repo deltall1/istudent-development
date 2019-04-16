@@ -1,4 +1,4 @@
-const db = require("../config/database");
+const db = require("../core/database");
 const User = db.import("../database/models/user");
 const jwt = require("jsonwebtoken");
 const uuid = require("uuid/v4");
