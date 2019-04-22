@@ -1,5 +1,4 @@
-const db = require("../core/database");
-const User = db.import("../database/models/user");
+const User = require('../database/models').User;
 const jwt = require("jsonwebtoken");
 const uuid = require("uuid/v4");
 const config = require("../config/app");
@@ -20,6 +19,11 @@ const login = (req, res) => {
     });
 };
 
+const google = (req, res) => {
+    res.send(req.user)
+}
+
 module.exports = {
-    login
+    login,
+    google,
 };

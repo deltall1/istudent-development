@@ -5,8 +5,7 @@ const bodyParser = require("body-parser");
 const passport = require('passport');
 
 const configs = require("./config/app");
-const regRoutes = require("./routes/register-routes");
-const authRoutes = require("./routes/auth-routes");
+const Routes = require('./routes/index');
 
 const app = express();
 
@@ -18,19 +17,10 @@ app.use(passport.initialize({}));
 require('./core/passport');
 
 
-// Створюємо маршрут /example
-app.use("/reg", regRoutes);
-app.use("/auth", authRoutes);
-
-
-
-// JUST Example!!!
-app.get('/api/me',
-    passport.authenticate('bearer', { session: false }),
-    function(req, res) {
-        res.json(req.user);
-    });
-
+// Створюємо маршрути
+app.use("/reg", Routes.registrationRouts);
+app.use("/auth", Routes.authRoutes);
+app.use("/profile", passport.authenticate(['bearer', 'google'], { scope: ['profile'], session: false }), Routes.profileRoutes)
 
 
 app.listen(configs.port, configs.host, () => {

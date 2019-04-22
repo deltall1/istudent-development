@@ -9,8 +9,6 @@ module.exports = (sequelize, DataTypes) => {
       password: DataTypes.STRING,
       avatarUrl: DataTypes.STRING,
       phoneNumber: DataTypes.STRING,
-      accessToken: DataTypes.STRING,
-      refreshToken: DataTypes.STRING
     },
     {
       hooks: {

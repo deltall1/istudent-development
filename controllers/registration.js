@@ -1,5 +1,4 @@
-const db = require('../core/database');
-const User = db.import('../database/models/user');
+const User = require('../database/models').User;
 
 const createUser = (req, res) => {
     User.findOne({
