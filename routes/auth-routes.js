@@ -1,16 +1,16 @@
-const router = require('express').Router();
-const authController = require('../controllers/auth');
-const passport = require('passport');
+const router = require("express").Router();
+const passport = require("passport");
+const usersController = require("../controllers/users");
 
-router.post('/', authController.login);
+router.post("/", usersController.logIn);
+router.get("/google", passport.authenticate("google", { scope: ["profile", "email"] }));
+
 router.get(
-    '/google', 
-    passport.authenticate('google', { scope: ['profile', 'email'] })
+  "/google/redirect",
+  passport.authenticate("google", { failureRedirect: "/login" }),
+  usersController.googleOAuth
 );
 
-router.get('/google/redirect', 
-  passport.authenticate('google', { failureRedirect: '/login' }),
-  authController.google
-);
+//router.get('/facebook', passport.authenticate('facebook'))
 
 module.exports = router;
