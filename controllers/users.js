@@ -33,7 +33,7 @@ module.exports = {
       } else {
         const refreshToken = uuid();
         res.send({
-          accessToken: jwt.sign({ userId: user.id }, config.secretKey),
+          accessToken: jwt.sign({ userId: user.id }, config.secretKey, {expiresIn: '2h'}),
           refreshToken: refreshToken
         });
       }

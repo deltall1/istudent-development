@@ -5,5 +5,9 @@ module.exports = {
     User.findAll().then(user => {
       res.send(user);
     });
+  },
+
+  getCurrentUser: (req, res) => {
+    res.send(req.user)
   }
 };

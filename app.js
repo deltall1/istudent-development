@@ -20,7 +20,7 @@ require('./core/passport');
 // Створюємо маршрути
 app.use("/reg", Routes.registrationRouts);
 app.use("/auth", Routes.authRoutes);
-app.use("/profile", passport.authenticate(['bearer', 'google'], { scope: ['profile'], session: false }), Routes.profileRoutes)
+app.use("/profile", passport.authenticate('bearer', { session: false }), Routes.profileRoutes)
 
 
 app.listen(configs.port, configs.host, () => {
