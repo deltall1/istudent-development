@@ -16,10 +16,10 @@ module.exports = {
           password: req.body.password
         }).then(newUser => {
           console.log(newUser.dataValues);
-          res.send("User created successfully");
+          res.status(201).send("User created successfully");
         });
       } else {
-        res.send("This user already exists");
+        res.status(409).send("This user already exists");
       }
     });
   },
@@ -29,7 +29,7 @@ module.exports = {
       where: { email: req.body.email }
     }).then(user => {
       if (!user || !user.validPassword(req.body.password)) {
-        res.send("Incorrect login or password");
+        res.status(403).send("Incorrect login or password");
       } else {
         const refreshToken = uuid();
         res.send({
