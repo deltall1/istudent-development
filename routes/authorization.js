@@ -9,6 +9,7 @@ router.get(
   passport.authenticate("google", { failureRedirect: "/login" }),
   authController.signInWithGoogle
 );
+router.post("/refresh", authController.refreshToken)
 
 //router.get('/facebook', passport.authenticate('facebook'))
 

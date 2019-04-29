@@ -7,7 +7,7 @@ exports.signIn = (req, res) => {
       res.status(403).send("Incorrect login or password");
     } else {
       console.log(user.dataValues)
-      userAuthService.create(user).then(userTokens => {
+      userAuthService.add(user.id).then(userTokens => {
         res.status(200).json({
           accessToken: userTokens.accessToken,
           refreshToken: userTokens.refreshToken
@@ -18,7 +18,23 @@ exports.signIn = (req, res) => {
 };
 
 exports.signInWithGoogle = (req, res) => {
-  userAuthService.create(req.user.id).then(userTokens => {
+  userAuthService.add(req.user.id).then(userTokens => {
     res.status(200).send(userTokens);
   });
 };
+
+exports.refreshToken = (req, res) => {
+  userAuthService.find(req.body.refreshToken).then(userTokens => {
+    if(!userTokens) {
+      return
+    } else {
+      userAuthService.delete(req.body.refreshToken)
+      userAuthService.add(userTokens.userID).then(newUserTokens => {
+        res.status(200).json({
+          accessToken: newUserTokens.accessToken,
+          refreshToken: newUserTokens.refreshToken
+        });
+      });
+    }
+  })
+}

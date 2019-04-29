@@ -12,7 +12,7 @@ exports.signUp = (req, res) => {
     if (!user) {
       userService.create(req.body).then(newUser => {
         console.log(newUser.dataValues);
-        userAuthService.create(newUser).then(userTokens => {
+        userAuthService.add(newUser.id).then(userTokens => {
           console.log(userTokens.dataValues);
           res.status(201).json({
             accessToken: userTokens.accessToken,

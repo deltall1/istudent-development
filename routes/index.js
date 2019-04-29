@@ -1,9 +1,7 @@
-const authenticaton = require('./authenticaton');
-const profile = require('./profile-routes');
+const authorization = require('./authorization');
 const registration = require('./registration');
 
 module.exports = {
-    authenticaton,
-    profile,
+    authorization,
     registration,
 }
