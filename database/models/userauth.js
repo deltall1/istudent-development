@@ -5,7 +5,7 @@ module.exports = (sequelize, DataTypes) => {
     refreshToken: DataTypes.STRING
   }, {});
   UserAuth.associate = function(models) {
-    // associations can be defined here
+    UserAuth.belongsTo(models.User, { foreignKey: 'id' })
   };
   return UserAuth;
 };

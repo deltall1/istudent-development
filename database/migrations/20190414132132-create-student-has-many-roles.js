@@ -4,14 +4,12 @@ module.exports = {
     return queryInterface.createTable("StudentHasManyRoles", {
       projectID: {
         allowNull: false,
-        autoIncrement: false,
-        primaryKey: true,
+        unique: true,
         type: Sequelize.INTEGER
       },
       roleID: {
         allowNull: false,
-        autoIncrement: false,
-        primaryKey: true,
+        unique: true,
         type: Sequelize.INTEGER
       },
       createdAt: {

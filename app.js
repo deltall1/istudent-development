@@ -18,9 +18,9 @@ require('./core/passport');
 
 
 // Створюємо маршрути
-app.use("/reg", Routes.registrationRouts);
-app.use("/auth", Routes.authRoutes);
-app.use("/profile", passport.authenticate('bearer', { session: false }), Routes.profileRoutes)
+app.use("/reg", Routes.registration);
+app.use("/auth", Routes.authenticaton);
+app.use("/profile", passport.authenticate('bearer', { session: false }), Routes.profile)
 
 
 app.listen(configs.port, configs.host, () => {
