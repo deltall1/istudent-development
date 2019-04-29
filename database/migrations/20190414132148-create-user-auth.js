@@ -4,14 +4,18 @@ module.exports = {
     return queryInterface.createTable('UserAuths', {
       id: {
         allowNull: false,
+        autoIncrement: true,
+        primaryKey: true,
+        type: Sequelize.INTEGER
+      },
+      userID: {
+        allowNull: false,
         type: Sequelize.INTEGER
       },
       accessToken: {
-        unique: true,
         type: Sequelize.STRING
       },
       refreshToken: {
-        unique: true,
         type: Sequelize.STRING
       },
       createdAt: {
