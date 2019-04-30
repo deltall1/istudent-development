@@ -25,8 +25,8 @@ module.exports = (sequelize, DataTypes) => {
   };
 
   User.associate = function(models) {
-    User.hasOne(models.Student),
-    User.hasOne(models.Company),
+    User.hasOne(models.Student, {foreignKey: 'id'}),
+    User.hasOne(models.Company, {foreignKey: 'id'}),
     User.hasOne(models.Recruiter)
     User.hasMany(models.UserAuth),
     User.hasOne(models.UserRole)
