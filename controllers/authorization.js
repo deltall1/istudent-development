@@ -8,6 +8,7 @@ exports.signIn = (req, res) => {
     } else {
       console.log(user.dataValues)
       userAuthService.add(user.id).then(userTokens => {
+        console.log(userTokens.dataValues)
         res.status(200).json({
           accessToken: userTokens.accessToken,
           refreshToken: userTokens.refreshToken
