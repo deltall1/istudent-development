@@ -5,6 +5,7 @@ module.exports = (sequelize, DataTypes) => {
     {
       studentID: DataTypes.INTEGER,
       institution: DataTypes.INTEGER,
+      course: DataTypes.INTEGER,
       isFinished: DataTypes.BOOLEAN,
       specialization: DataTypes.STRING
     },
