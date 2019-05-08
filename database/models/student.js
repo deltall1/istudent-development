@@ -5,13 +5,12 @@ module.exports = (sequelize, DataTypes) => {
     {
       firstName: DataTypes.STRING,
       lastName: DataTypes.STRING,
-      city: DataTypes.INTEGER
+      city: DataTypes.STRING
     },
     {}
   );
   Student.associate = function(models) {
     Student.belongsTo(models.User),
-    Student.hasOne(models.City),
     Student.hasMany(models.Education),
     Student.hasMany(models.AdditionalEducation),
     Student.hasMany(models.StudentProject),

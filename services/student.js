@@ -21,7 +21,7 @@ exports.create = (userId, data) => {
     user.createStudent({
         firstName: data.firstName,
         lastName: data.lastName,
-        city: 
+        city: data.city
     });
   });
   return student;
