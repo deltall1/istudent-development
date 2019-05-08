@@ -17,7 +17,7 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       course: {
-        type: DataTypes.INTEGER
+        type: Sequelize.INTEGER
       },
       isFinished: {
         type: Sequelize.BOOLEAN,
