@@ -11,8 +11,8 @@ module.exports = (sequelize, DataTypes) => {
     {}
   );
   Education.associate = function(models) {
-    Education.belongsTo(models.Student),
-    Education.hasOne(models.Institution)
+    Education.belongsTo(models.Student);
+    Education.hasOne(models.Institution);
   };
   return Education;
 };
