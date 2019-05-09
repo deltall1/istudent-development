@@ -52,21 +52,15 @@ exports.createStudentProfile = (req, res) => {
           console.log("Experience successfully created");
         });
       }
-      /*if(req.body.education){
+      if(req.body.education){
         req.body.education.forEach(element => {
-          institutionService.findByName(element.institution).then(institution =>{
-            if(!institution){
-              element.createInstitution({name:element.institution}).then(newInstitution =>{
-                element.institution= newInstitution.id;
-              });
-            }else{
-              element.institution = institution.id;
-            }
+          institutionService.findOrCreate(element.institution).then(inst=>{
+            element.institution = inst.id;
+            student.createEducation(element);
           });
-          student.createEducation(element);
           console.log("Education successfully created");
         });
-      }*/
+      }
       if(req.body.additionalEducation){
         req.body.additionalEducation.forEach(element => {
           student.createAdditionalEducation(element);

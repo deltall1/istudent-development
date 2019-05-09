@@ -5,13 +5,11 @@ exports.findByName = institutionName => {
 };
 
 exports.findOrCreate = institutionName =>{
-    return Institution.findOne({ where: { name: institutionName } }).then(institution =>{
-        if(!institution){
-            return Institution.create({name: institutionName}).id;
-        }else{
-            return institution.id;
+    return Institution.findOrCreate({where:{name:institutionName}}).then(
+        institution =>{
+            return institution[0];
         }
-    })
+    )
 };
 
 exports.getId = institutionName =>{
