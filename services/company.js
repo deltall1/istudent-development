@@ -6,3 +6,11 @@ exports.create = (userID, data) => {
       return user.createCompany(data)
   })
 };
+
+exports.findByName = companyName => {
+  return Company.findOne({ where: { name: companyName } });
+};
+
+exports.findById = companyId => {
+    return Company.findOne({ where: { id: companyId } });
+};
