@@ -4,13 +4,12 @@ module.exports = (sequelize, DataTypes) => {
     "Company",
     {
       name: DataTypes.STRING,
-      city: DataTypes.STRING,
       link: DataTypes.STRING
     },
     {}
   );
   Company.associate = function(models) {
-    Company.belongsTo(models.User)
+    Company.hasMany(models.Recruiter)
   };
   return Company;
 };
