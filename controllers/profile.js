@@ -1,5 +1,6 @@
 const studentService = require("../services/student");
 const companyService = require("../services/company");
+const recruiterService = require("../services/recruiter");
 const skillService = require("../services/skill");
 const technologyService = require("../services/technology");
 const projectService = require("../services/project");
@@ -56,14 +57,8 @@ exports.createStudentProfile = (req, res) => {
 };
 
 exports.createCompanyProfile = (req, res) => {
-  companyService
-      .create(req.user.id, req.body.company)
-      .then(company => {
-        console.log(company.dataValues);
-        company.createWork;
-        res.status(201).send("Company successfully created");
-      })
-      .catch(err => {
-        res.status(400).send(err.message);
-      });
+  companyService.findOrCreate(req.body.company).then(newCompany =>{
+    recruiterService.create(req.user.id, newCompany.id);
+  });
+  res.status(201).send("Recruiter created");
 };

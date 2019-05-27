@@ -1,10 +1,14 @@
 const User = require("../database/models").User;
 const Company = require("../database/models").Company;
 
-exports.create = (userID, data) => {
-  return User.findOne({ where: { id: userID } }).then(user => {
-      return user.createCompany(data)
-  })
+exports.findOrCreate = (data) => {
+    return Company.findOne({ where: { name: data.name } }).then(company =>{
+        if(!company){
+            return Company.create(data);
+        }else{
+            return company;
+        }
+    });
 };
 
 exports.findByName = companyName => {

@@ -1,15 +1,15 @@
 "use strict";
 module.exports = (sequelize, DataTypes) => {
   const Recruiter = sequelize.define(
-    "Recruiter",
-    {
-      companyID: DataTypes.INTEGER
-    },
-    {}
+      "Recruiter",
+      {
+        companyID: DataTypes.INTEGER
+      },
+      {}
   );
   Recruiter.associate = function(models) {
     Recruiter.belongsTo(models.User);
-    Recruiter.belongsTo(models.Company);
+    Recruiter.belongsTo(models.Company, { foreignKey: "id" });
   };
   return Recruiter;
 };
