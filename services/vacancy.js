@@ -1,29 +1,60 @@
 const Vacancy = require("../database/models").Vacancy;
+const Position = require("../database/models").Position;
+const Company = require("../database/models").Company;
+const Skill = require("../database/models").Skill;
 
 const companyService = require("./company");
 const positionService = require("./position");
+const skillService = require("../services/skill");
 
 exports.create = (companyId, data) => {
   return companyService.findById(companyId).then(company => {
-    return positionService.findOrCreate(data.positionID).then(position => {
+    return positionService.findOrCreate(data.position).then(position => {
       data.positionID = position.id;
-      return company.createVacancy(data);
+      return company.createVacancy(data).then(newVacancy => {
+        if (data.skills) {
+          data.skills.forEach(skill => {
+            return skillService.createVacancy(newVacancy, skill);
+          });
+        }
+      });
     });
   });
 };
 
 exports.getAllVacancies = () => {
-  return Vacancy.findAll();
+  return Vacancy.findAll({
+    include: [Position, Company]
+  });
 };
 
 exports.findByData = data => {
-  if (data.positionID) {
-    return positionService.findByName(data.positionID).then(currPosition => {
-      data.positionID = currPosition.id;
+  let filterList = [
+    {
+      model: Position,
+      where: {
+        name: data.position
+      }
+    },
+    {
+      model: Company,
+      where: {
+        name: data.company
+      }
+    },
+    {
+      model: Skill,
+      where: {
+        name: data.skill
+      }
+    }
+  ];
 
-      return Vacancy.findAll({ where: data });
-    });
-  } else {
-    return Vacancy.findAll({ where: data });
-  }
+  filterList = filterList.filter(
+    item => !!item.where.name && !!item.where.name.length
+  );
+
+  return Vacancy.findAll({
+    include: filterList
+  });
 };

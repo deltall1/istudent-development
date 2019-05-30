@@ -3,12 +3,22 @@ exports.findByName = skillName => {
   return Skill.findOne({ where: { name: skillName } });
 };
 
-exports.create = (student,data) => {
-    return Skill.findOne({where:{name:data}}).then(skill =>{
-      if(skill){
-        return skill.addStudent(student)
-      }else{
-        return student.createSkill({name:data})
-      }
-    })
+exports.create = (student, data) => {
+  return Skill.findOne({ where: { name: data } }).then(skill => {
+    if (skill) {
+      return skill.addStudent(student);
+    } else {
+      return student.createSkill({ name: data });
+    }
+  });
+};
+
+exports.joinVacancy = (vacancy, data) => {
+  return Skill.findOne({ where: { name: data } }).then(skill => {
+    if (skill) {
+      return skill.addVacancy(vacancy);
+    } else {
+      return vacancy.createSkill({ name: data });
+    }
+  });
 };

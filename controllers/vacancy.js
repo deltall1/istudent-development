@@ -11,15 +11,16 @@ exports.createVacancy = (req, res) => {
   }
 };
 
-exports.findAll = async (req, res) => {
-  vacancies = await vacancyService.getAllVacancies();
-  res.send(vacancies);
+exports.findAll = (req, res) => {
+  vacancyService.getAllVacancies().then(vacancies => {
+    res.send(vacancies);
+  });
 };
 
-exports.findVacancyByData = async (req, res) => {
+exports.findVacancyByData = (req, res) => {
   if (req.body.filter) {
-    vacancies = await vacancyService.findByData(req.body.filter);
-
-    res.send(vacancies);
+    vacancyService.findByData(req.body.filter).then(vacancies => {
+      res.send(vacancies);
+    });
   }
 };
