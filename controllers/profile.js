@@ -58,7 +58,7 @@ exports.createStudentProfile = (req, res) => {
 
 exports.createCompanyProfile = (req, res) => {
   companyService.findOrCreate(req.body.company).then(newCompany =>{
-    recruiterService.create(req.user.id, newCompany.id);
+    newCompany.addUser(req.user.id);
   });
   res.status(201).send("Recruiter created");
 };

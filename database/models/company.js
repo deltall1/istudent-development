@@ -9,7 +9,10 @@ module.exports = (sequelize, DataTypes) => {
         {}
     );
     Company.associate = function(models) {
-        Company.hasMany(models.Recruiter, { foreignKey: "companyID" })
+        Company.belongsToMany(models.User, {
+            through: models.Recruiter,
+            foreignKey: "companyID"
+        });
     };
     return Company;
 };
