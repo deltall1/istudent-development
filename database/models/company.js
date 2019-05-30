@@ -13,6 +13,7 @@ module.exports = (sequelize, DataTypes) => {
             through: models.Recruiter,
             foreignKey: "companyID"
         });
+        Company.hasMany(models.Vacancy);
     };
     return Company;
 };
