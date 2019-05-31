@@ -23,6 +23,7 @@ app.use("/auth", Routes.authorization);
 app.use("/profile", passport.authenticate('bearer', { session: false }), Routes.profile);
 app.use("/company", passport.authenticate('bearer', { session: false }), Routes.company);
 app.use("/vacancy", passport.authenticate('bearer', { session: false }), Routes.vacancy);
+app.use("/course", passport.authenticate('bearer', { session: false }), Routes.course);
 
 
 app.listen(configs.port, configs.host, () => {

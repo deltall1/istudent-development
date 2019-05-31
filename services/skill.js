@@ -22,3 +22,13 @@ exports.joinVacancy = (vacancy, data) => {
     }
   });
 };
+
+exports.joinCourse = (course, data) => {
+  return Skill.findOne({ where: { name: data } }).then(skill => {
+    if (skill) {
+      return skill.addCourse(course);
+    } else {
+      return course.createSkill({ name: data });
+    }
+  });
+};

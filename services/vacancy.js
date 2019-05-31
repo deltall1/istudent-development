@@ -14,7 +14,7 @@ exports.create = (companyId, data) => {
       return company.createVacancy(data).then(newVacancy => {
         if (data.skills) {
           data.skills.forEach(skill => {
-            return skillService.createVacancy(newVacancy, skill);
+            return skillService.joinVacancy(newVacancy, skill);
           });
         }
       });
@@ -57,4 +57,12 @@ exports.findByData = data => {
   return Vacancy.findAll({
     include: filterList
   });
+};
+
+exports.delete = vacancyId => {
+  Vacancy.destroy({ where: { id : vacancyId } });
+};
+
+exports.update = (vacancyId,data) => {
+  return Vacancy.update(data, { where: { id : vacancyId } });
 };

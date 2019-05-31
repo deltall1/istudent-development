@@ -14,6 +14,7 @@ module.exports = (sequelize, DataTypes) => {
             foreignKey: "companyID"
         });
         Company.hasMany(models.Vacancy);
+        Company.hasMany(models.Course);
     };
     return Company;
 };
