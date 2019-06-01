@@ -31,9 +31,9 @@ exports.deleteVacancy = (req, res) => {
 };
 
 exports.updateVacancy = (req, res) => {
-  vacancyService.update(req.body.id,req.body.update);
+  vacancyService.update(req.body.id, req.body.update);
 };
 
 exports.addStudent = (req, res) => {
-  studentService.addVacancy(req.user.id,req.body.id);
+  studentService.addVacancy(req.user.id, req.body.id);
 };

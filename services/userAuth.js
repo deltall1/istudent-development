@@ -2,12 +2,12 @@ const UserAuth = require("../database/models").UserAuth;
 const issueTokenPair = require("./issueToken").issueTokenPair;
 
 exports.add = id => {
-  const tokens = issueTokenPair(id)
+  const tokens = issueTokenPair(id);
   const userTokens = UserAuth.create({
     userID: id,
     accessToken: tokens.accessToken,
     refreshToken: tokens.refreshToken
-  })
+  });
   return userTokens;
 };
 

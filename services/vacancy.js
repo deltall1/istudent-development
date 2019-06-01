@@ -60,9 +60,9 @@ exports.findByData = data => {
 };
 
 exports.delete = vacancyId => {
-  Vacancy.destroy({ where: { id : vacancyId } });
+  Vacancy.destroy({ where: { id: vacancyId } });
 };
 
-exports.update = (vacancyId,data) => {
-  return Vacancy.update(data, { where: { id : vacancyId } });
+exports.update = (vacancyId, data) => {
+  return Vacancy.update(data, { where: { id: vacancyId } });
 };
