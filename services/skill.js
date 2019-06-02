@@ -13,6 +13,8 @@ exports.create = (student, data) => {
   });
 };
 
+
+
 exports.joinVacancy = (vacancy, data) => {
   return Skill.findOne({ where: { name: data } }).then(skill => {
     if (skill) {
