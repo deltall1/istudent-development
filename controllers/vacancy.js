@@ -3,37 +3,45 @@ const vacancyService = require("../services/vacancy");
 const studentService = require("../services/student");
 
 exports.createVacancy = (req, res) => {
-  if (req.body.vacancy) {
-    companyService.findByUser(req.user.id).then(recruiter => {
-      vacancyService.create(recruiter.companyID, req.body.vacancy);
-    });
+    if (req.body.vacancy) {
+        companyService.findByUser(req.user.id).then(recruiter => {
+            vacancyService.create(recruiter.companyID, req.body.vacancy);
+        });
 
-    res.send("Vacancy created");
-  }
+        res.send("Vacancy created");
+    }
 };
 
 exports.findAll = (req, res) => {
-  vacancyService.getAllVacancies().then(vacancies => {
-    res.send(vacancies);
-  });
+    if (req.body.filter) {
+        vacancyService.findByData(req.body.filter).then(vacancies => {
+            res.send(vacancies);
+        });
+    } else {
+        vacancyService.getAllVacancies().then(vacancies => {
+            res.send(vacancies);
+        });
+    }
 };
 
+/*
 exports.findVacancyByData = (req, res) => {
-  if (req.body.filter) {
-    vacancyService.findByData(req.body.filter).then(vacancies => {
-      res.send(vacancies);
-    });
-  }
+    if (req.body.filter) {
+        vacancyService.findByData(req.body.filter).then(vacancies => {
+            res.send(vacancies);
+        });
+    }
 };
+*/
 
 exports.deleteVacancy = (req, res) => {
-  vacancyService.delete(req.body.id);
+    vacancyService.delete(req.body.id);
 };
 
 exports.updateVacancy = (req, res) => {
-  vacancyService.update(req.body.id, req.body.update);
+    vacancyService.update(req.body.id, req.body.update);
 };
 
 exports.addStudent = (req, res) => {
-  studentService.addVacancy(req.user.id, req.body.id);
+    studentService.addVacancy(req.user.id, req.body.id);
 };
